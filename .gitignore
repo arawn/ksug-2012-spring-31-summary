@@ -4,3 +4,14 @@
 *.jar
 *.war
 *.ear
+
+# eclipse
+.project
+.classpath
+.springBeans
+
+# mavan
+target
+
+# etc
+reference-data

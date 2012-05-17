@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    
+    <entry key="NotBlank.movie.title">영화 제목을 입력하세요.</entry>
+    <entry key="NotBlank.movie.title">영화 제목을 입력하세요.</entry>
+    
+    <entry key="movie.new.succeed">성공적으로 등록했습니다.</entry>
+    <entry key="movie.edit.succeed">성공적으로 수정되었습니다.</entry>
+    
+    <entry key="NotNull">필수로 입력해야 합니다.</entry>
+    <entry key="NotBlank">필수로 입력해야 합니다.</entry>
+    
+</properties>
