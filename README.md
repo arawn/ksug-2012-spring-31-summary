@@ -11,7 +11,7 @@ Spring Framework 3.1: Key Themes
 * 'c:' namespace
 * Cache abstraction & declarative caching
 * Explicit support for Servlet 3.0
-* **@MVC processing & flash attributes**
+* @MVC processing & flash attributes
 * Refined JPA support
 * Hibernate 4.0 & Quartz 2.0
 * Support for Java SE 7
@@ -52,7 +52,9 @@ public class AppConfig {
 * Activating specific profiles by name
 
   > Environment Variable : export spring.profiles.active=dev
+
   > JVM Parameter : -Dspring.profiles.active=prod
+
   > Web.xml : context-param, init-param
 
 
@@ -65,6 +67,7 @@ public class AppConfig {
 * @Enable*
 
   > @EnableTransactionManagement
+
   > @EnableWebMvc
 
 * @PropertySource("classpath:META-INF/app.properties")
@@ -102,6 +105,7 @@ public void deleteOwner(int id);
 * Backend adapters for EhCache, GemFire, Coherence, etc
 
   > EhCacheCacheManager
+
   > GemFireCacheManager
 
 <br>
@@ -139,7 +143,7 @@ Spring @MVC 3.1: Key Themes
 ------------------------------------------------------------------------------------------------
 
 * **Java Config**
-* **Consumes/Produces**
+* Consumes/Produces
 * **URI Variables**
 * **Redirect & Flash Attributes**
 * Multipart Request Support
@@ -291,7 +295,7 @@ public String createRoom() {
 @RequestMapping(
         value="/{account}", 
         method = RequestMethod.PUT)
-public String update(Account account) {
+public String update(@ModelAttribute Account account) {
 
     // Account was retrieved from DB 
     // via Converter<String, Account>
@@ -303,19 +307,11 @@ public String update(Account account) {
 <br>
 ### ◎ Redirect & Flash Attributes ###
 
-#### ✔ Redirect URL ####
-
-```java
-@RequestMapping(method = RequestMethod.POST)
-public String save(Account account){
-
-	return "redirect:/account/" + account.getId();
-}
-```
-
 #### ✔ RedirectAttributes ####
 
 ```java
+// "redirect:/account/" + account.getId()
+
 @RequestMapping(method=POST)
 public String save(Account account, RedirectAttributes redirectAttrs){
 
@@ -338,15 +334,15 @@ public String save(Entity entity, RedirectAttributes redirectAttrs){
 }
 ```
 
-```
-	${message}
+```javascript
+alert('${message}');
 ```
 
 
 <br>
 ### ◎ Multipart Request Support ###
 
-#### ✔ MultipartFile Example ####
+#### ✔ org.springframework.web.multipart.MultipartFile ####
 
 ```java
 @RequestMapping(method = RequestMethod.POST)
@@ -388,7 +384,7 @@ public ResponseEntity<Object> void create(
 ```
 
 <br>
-### ◎ UriComponentsBuilder ###
+### ◎ UriComponents / UriComponentsBuilder ###
 
 ```java
 // /book/search?title=Noje.js
@@ -410,21 +406,21 @@ UriComponentsBuilder.fromPath("/{product}/search")
 <br>
 ### ◎ New @MVC Infrastructure ###
 
-#### ✔ DispatcherServlet과 MVC 아키텍쳐 ####
+#### ✔ DispatcherServlet과 Spring 3.0.x MVC 아키텍쳐 ####
 
 ![MVC 아키텍쳐](http://cfile25.uf.tistory.com/original/165D39114A6E757A228087)
 
 (그림 출처: http://chanwook.tistory.com/784)
 
 
-**HandlerAdapter**
+**➤ HandlerAdapter**
 
 * SimpleControllerHandlerAdapter (1.0)
 * SimpleServletHandlerAdapter (1.1.5)
 * HttpRequestHandlerAdapter (2.0)
 * AnnotationMethodHandlerAdapter (2.5)
 
-**HandlerMapping**
+**➤ HandlerMapping**
 
 * BeanNameUrlHandlerMapping (1.0)
 * SimpleUrlHandlerMapping (1.0)
@@ -432,7 +428,7 @@ UriComponentsBuilder.fromPath("/{product}/search")
 * DefaultAnnotationHandlerMapping (2.5)
 * ControllerBeanNameHandlerMapping (2.5.3)
 
-**HandlerExceptionResolver**
+**➤ HandlerExceptionResolver**
 
 * AnnotationMethodHandlerExceptionResolver
 
@@ -448,11 +444,13 @@ UriComponentsBuilder.fromPath("/{product}/search")
 
 (그립 출처 : http://rstoyanchev.github.com/spring-mvc-31-update/#25)
 
+**➤ New @MVC Class **
+
 * HandlerMapping : RequestMappingHandlerMapping
 * HandlerAdapter : RequestMappingHandlerAdapter
 * HandlerExceptionResolver : ExceptionHandlerExceptionResolver
 
-**New Abstractions**
+**➤ New Abstractions**
 
 * HandlerMethod
 * HandlerMethodArgumentResolver
