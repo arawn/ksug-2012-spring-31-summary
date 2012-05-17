@@ -50,6 +50,7 @@ public class AppConfig {
 ```
 
 * Activating specific profiles by name
+
 ** Environment Variable : export spring.profiles.active=dev
 ** JVM Parameter : -Dspring.profiles.active=prod
 ** Web.xml : context-param, init-param
@@ -61,8 +62,10 @@ public class AppConfig {
 * @ComponentScan
 * @Bean
 * @Enable*
+
 ** @EnableTransactionManagement
 ** @EnableWebMvc
+
 * @PropertySource("classpath:META-INF/app.properties")
 * @ActiveProfiles("dev")
 
@@ -94,6 +97,7 @@ public void deleteOwner(int id);
 ```
 
 * Backend adapters for EhCache, GemFire, Coherence, etc
+
 ** EhCacheCacheManager
 ** GemFireCacheManager
 
@@ -122,16 +126,16 @@ public void deleteOwner(int id);
 * support for fork-join framework
 
 
-
+<br><br>
 Spring @MVC 3.1: Key Themes
 ------------------------------------------------------------------------------------------------
 
 * **Consumes/Produces**
 * **URI Variables**
 * **Redirect & Flash Attributes**
-* **Multipart Request Support**
 * **New @MVC Infrastructure**
-* Java Config
+* **Java Config**
+* Multipart Request Support
 * UriComponentsBuilder
 * HDIV Integration
 
@@ -318,6 +322,9 @@ public ResponseEntity<Object> void create(
 
 ![MVC 아키텍쳐](http://cfile25.uf.tistory.com/original/165D39114A6E757A228087)
 
+(그림 출처: http://chanwook.tistory.com/784)
+
+
 **HandlerAdapter**
 
 * SimpleControllerHandlerAdapter (1.0)
@@ -336,7 +343,9 @@ public ResponseEntity<Object> void create(
 **HandlerExceptionResolver**
 
 * AnnotationMethodHandlerExceptionResolver
+
 ** @ExceptionHandler
+
 * ResponseStatusExceptionResolver
 * DefaultHandlerExceptionResolver
 * SimpleMappingExceptionResolver
@@ -350,6 +359,8 @@ public ResponseEntity<Object> void create(
 
 ![New @MVC Infrastructure](http://rstoyanchev.github.com/spring-mvc-31-update/file/infrastructure/support-classes.png)
 
+(그립 출처 : http://rstoyanchev.github.com/spring-mvc-31-update/#25)
+
 * HandlerMapping : RequestMappingHandlerMapping
 * HandlerAdapter : RequestMappingHandlerAdapter
 * HandlerExceptionResolver : ExceptionHandlerExceptionResolver
@@ -360,10 +371,10 @@ public ResponseEntity<Object> void create(
 * HandlerMethodArgumentResolver
 * HandlerMethodReturnValueHandler
 
-**What Is Possible Now**
 
-* Custom request conditions
-* Build request mappings from any source
-* Inspect controller method in interceptors
-* Customize any argument or return value
-* Design own method signature
+
+<br><br>
+### 참고자료
+
+* [Configuration Enhancements in Spring 3.1](http://cbeams.github.com/spring-3.1-config/#1)
+* [Spring MVC 3.1 Update](http://rstoyanchev.github.com/spring-mvc-31-update/#1)
