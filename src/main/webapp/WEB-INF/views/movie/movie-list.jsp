@@ -8,7 +8,7 @@
 <layout:default>
 <div class='row'>
 	<div class='span6'>
-		<h1>영화관리</h1>
+		<h1>CRUD Controller</h1>
 	</div>
 	<div class='span6'>
 		<a href='<spring:url value="/movie/new"/>' class='btn pull-right'>신규 등록</a>

@@ -19,6 +19,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpStatus;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
+import org.springframework.util.StringUtils;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -27,18 +28,20 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import shopping.domain.support.convert.ProductEntityConvert;
 import shopping.domain.support.convert.StringToProductTypeConvert;
+import shopping.web.servlet.mvc.ExtendedRequestMappingHandlerMapping;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages={"shopping.web"})
-public class ShoppingWebApplicationConfig extends WebMvcConfigurerAdapter {
+public class ShoppingWebApplicationConfig extends WebMvcConfigurationSupport {
 	
 	@Inject ResourceLoader resourceLoader; 
 	@Inject ConfigurableEnvironment environment;
@@ -63,6 +66,17 @@ public class ShoppingWebApplicationConfig extends WebMvcConfigurerAdapter {
 		messageSource.setBasename("WEB-INF/messages");
 		
 		return messageSource;
+	}
+	
+	@Override
+	@Bean
+	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+		ExtendedRequestMappingHandlerMapping handlerMapping = new ExtendedRequestMappingHandlerMapping();
+		handlerMapping.setMobileDeviceNames(StringUtils.commaDelimitedListToSet("iPhone,iPod,iPad,Android"));
+		handlerMapping.setInterceptors(getInterceptors());
+		handlerMapping.setOrder(0);
+		
+		return handlerMapping;
 	}
 	
 	@Bean

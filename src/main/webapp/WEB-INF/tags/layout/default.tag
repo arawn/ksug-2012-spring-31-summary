@@ -46,7 +46,8 @@
 				<a class='brand' href='<spring:url value="/movie"/>'>Spring @MVC 3.1 Demo</a>
 				<div class='nav-collapse'>
 					<ul class='nav'>
-						<li><a href='<spring:url value="/movie"/>'>CRUDController</a></li>
+						<li><a href='<spring:url value="/movie"/>'>CRUD Controller</a></li>
+						<li><a href='<spring:url value="/product"/>'>Custom request condition</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
