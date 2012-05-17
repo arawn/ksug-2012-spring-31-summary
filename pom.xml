@@ -49,6 +49,11 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.resthub</groupId>
+			<artifactId>springmvc-router</artifactId>
+			<version>0.7-SNAPSHOT</version>
+		</dependency>
         
         <!-- spring-data-jpa -->
         <dependency>
@@ -243,6 +248,17 @@
             <name>JBoss Repo</name>
             <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
         </repository>
+		<repository>
+			<id>sonatype.oss.snapshots</id>
+			<name>Sonatype OSS Snapshot Repository</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository> 
     </repositories>
 
     <pluginRepositories>

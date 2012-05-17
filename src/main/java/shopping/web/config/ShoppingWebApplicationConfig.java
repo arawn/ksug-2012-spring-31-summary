@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
 
+import org.resthub.web.springmvc.router.RouterHandlerMapping;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,6 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpStatus;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
-import org.springframework.util.StringUtils;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -36,7 +36,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import shopping.domain.support.convert.ProductEntityConvert;
 import shopping.domain.support.convert.StringToProductTypeConvert;
-import shopping.web.servlet.mvc.ExtendedRequestMappingHandlerMapping;
+
+import com.google.common.collect.Lists;
 
 @Configuration
 @EnableWebMvc
@@ -68,17 +69,27 @@ public class ShoppingWebApplicationConfig extends WebMvcConfigurationSupport {
 		return messageSource;
 	}
 	
-	@Override
 	@Bean
-	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-		ExtendedRequestMappingHandlerMapping handlerMapping = new ExtendedRequestMappingHandlerMapping();
-		handlerMapping.setMobileDeviceNames(StringUtils.commaDelimitedListToSet("iPhone,iPod,iPad,Android"));
+	public RouterHandlerMapping routerHandlerMapping() {
+		RouterHandlerMapping handlerMapping = new RouterHandlerMapping();
+		handlerMapping.setRouteFiles(Lists.newArrayList("classpath:routes.conf"));
+		handlerMapping.setServletPrefix("/spring-mvc-31-demo");
 		handlerMapping.setInterceptors(getInterceptors());
 		handlerMapping.setOrder(0);
 		
 		return handlerMapping;
 	}
 	
+	@Bean
+	@Override
+	public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+		RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
+		handlerMapping.setInterceptors(getInterceptors());
+		handlerMapping.setOrder(1);
+		
+		return handlerMapping;
+	}
+
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
