@@ -1,4 +1,4 @@
-[KSUG 세미나 2012 - Part 1] 스프링은 지금 : Spring 3.1에 대한 기능 소개와 @MVC 이야기
+[KSUG 세미나 2012 - Part 1] Spring 3.1에 대한 기능 소개와 @MVC 이야기
 ================================================================================================
 
 
@@ -16,15 +16,14 @@ Spring Framework 3.1: Key Themes
 * Hibernate 4.0 & Quartz 2.0
 * Support for Java SE 7
 
+<br>### ◎ Environment profiles for bean definitions ###
 
-### Environment profiles for bean definitions ###
-
-#### Environment Abstraction ####
+#### ✔ Environment Abstraction ####
 
 * org.springframework.core.env.PropertyResolver
 * org.springframework.core.env.Environment
 
-#### Environment Profiles && Configuration ####
+#### ✔ Environment Profiles && Configuration ####
 
 * XML 'profile' attribute on <beans> element
 
@@ -51,26 +50,26 @@ public class AppConfig {
 
 * Activating specific profiles by name
 
-** Environment Variable : export spring.profiles.active=dev
-** JVM Parameter : -Dspring.profiles.active=prod
-** Web.xml : context-param, init-param
+  > Environment Variable : export spring.profiles.active=dev
+  > JVM Parameter : -Dspring.profiles.active=prod
+  > Web.xml : context-param, init-param
 
 
-### Java-based application configuration ###
+<br>### ◎ Java-based application configuration ###
 
 * @Configuration
 * @ComponentScan
 * @Bean
 * @Enable*
 
-** @EnableTransactionManagement
-** @EnableWebMvc
+  > @EnableTransactionManagement
+  > @EnableWebMvc
 
 * @PropertySource("classpath:META-INF/app.properties")
 * @ActiveProfiles("dev")
 
 
-### 'c:' namespace ###
+<br>### ◎ 'c:' namespace ###
 
 ```xml
 <bean class="…" c:age="10" c:name="myName"/>
@@ -78,7 +77,7 @@ public class AppConfig {
 <bean class="…" c:name-ref="nameBean" c:spouse-ref="spouseBean"/>
 ```
 
-### Cache abstraction & declarative caching ###
+<br>### ◎ Cache abstraction & declarative caching ###
 
 * Declarative Caching
 
@@ -98,28 +97,28 @@ public void deleteOwner(int id);
 
 * Backend adapters for EhCache, GemFire, Coherence, etc
 
-** EhCacheCacheManager
-** GemFireCacheManager
+  > EhCacheCacheManager
+  > GemFireCacheManager
 
-### Explicit support for Servlet 3.0 ###
+<br>### ◎ Explicit support for Servlet 3.0 ###
 
 * support for XML-free web application setup (no web.xml)
 * support for asynchronous request processing
 * standard Servlet 3.0 file upload support behind Spring's MultipartResolver abstraction
 
-### @MVC processing & flash attributes ###
+<br>### ◎ @MVC processing & flash attributes ###
 
 * New @MVC Infrastructure
 * FlashMap support and FlashMapManager abstraction
 
-### Refined JPA support ###
+<br>### ◎ Refined JPA support ###
 
 * Package scanning without persistence.xml
 * Consistent JPA setup by persistence unit name
 
-### Hibernate 4.0 & Quartz 2.0 ###
+<br>### ◎ Hibernate 4.0 & Quartz 2.0 ###
 
-### Support for Java SE 7 ###
+<br>### ◎ Support for Java SE 7 ###
 
 * making best use of JRE 7 at runtime
 * support for JDBC 4.1
@@ -139,9 +138,9 @@ Spring @MVC 3.1: Key Themes
 * UriComponentsBuilder
 * HDIV Integration
 
-### Consumes/Produces ###
+<br>### ◎ Consumes/Produces ###
 
-#### Input Media Type ####
+#### ✔ Input Media Type ####
 
 ```java
 @ResponseBody
@@ -161,7 +160,7 @@ public String save(@RequestBody JavaBean javaBean) {
 }
 ```
 
-#### Output Media Type ####
+#### ✔ Output Media Type ####
 
 ```java
 @ResponseBody
@@ -182,9 +181,9 @@ public JavaBean get() {
 ```
 
 
-### URI Variables ###
+<br>### ◎ URI Variables ###
 
-#### Data Binding & URI Variables ####
+#### ✔ Data Binding & URI Variables ####
 
 ```java
 @RequestMapping(value="/people/{firstName}/{lastName}/SSN")
@@ -194,7 +193,7 @@ public void search(Person person) {
 }
 ```
 
-#### Rendering & Path Variables ####
+#### ✔ Rendering & Path Variables ####
 
 ```java
 @RequestMapping("/apps/edit/{slug}")
@@ -203,7 +202,7 @@ public String editForm(@PathVariable String slug){
 }
 ```
 
-#### "redirect:" & URI Vars ####
+#### ✔ "redirect:" & URI Vars ####
 
 ```java
 @RequestMapping(
@@ -218,7 +217,7 @@ public String createRoom() {
 }
 ```
 
-#### Model Attributes & URI Vars ####
+#### ✔ Model Attributes & URI Vars ####
 
 ```java
 @RequestMapping(
@@ -232,9 +231,10 @@ public String update(Account account) {
 }
 ```
 
-### Redirect & Flash Attributes ###
 
-#### Redirect URL ####
+<br>### ◎ Redirect & Flash Attributes ###
+
+#### ✔ Redirect URL ####
 
 ```java
 @RequestMapping(method = RequestMethod.POST)
@@ -244,7 +244,7 @@ public String save(Account account){
 }
 ```
 
-#### RedirectAttributes ####
+#### ✔ RedirectAttributes ####
 
 ```java
 @RequestMapping(method=POST)
@@ -257,7 +257,7 @@ public String save(Account account, RedirectAttributes redirectAttrs){
 }
 ```
 
-#### Flash Attributes ####
+#### ✔ Flash Attributes ####
 
 ```java
 @RequestMapping(method=POST)
@@ -273,9 +273,10 @@ public String save(Entity entity, RedirectAttributes redirectAttrs){
 	${message}
 ```
 
-### Multipart Request Support ###
 
-#### MultipartFile Example ####
+<br>### ◎ Multipart Request Support ###
+
+#### ✔ MultipartFile Example ####
 
 ```java
 @RequestMapping(method = RequestMethod.POST)
@@ -288,7 +289,7 @@ public void create(@RequestParam("file") MultipartFile file){
 }
 ```
 
-#### javax.servlet.http.Part ####
+#### ✔ javax.servlet.http.Part ####
 
 ```java
 @RequestMapping(method = RequestMethod.POST)
@@ -301,7 +302,7 @@ public void create(@RequestParam("file") Part part){
 }
 ```
 
-#### @RequestPart ####
+#### ✔ @RequestPart ####
 
 ```java
 @RequestMapping(
@@ -316,9 +317,9 @@ public ResponseEntity<Object> void create(
 } 
 ```
 
-### New @MVC Infrastructure ###
+<br>### ◎ New @MVC Infrastructure ###
 
-#### DispatcherServlet과 MVC 아키텍쳐 ####
+#### ✔ DispatcherServlet과 MVC 아키텍쳐 ####
 
 ![MVC 아키텍쳐](http://cfile25.uf.tistory.com/original/165D39114A6E757A228087)
 
@@ -344,7 +345,7 @@ public ResponseEntity<Object> void create(
 
 * AnnotationMethodHandlerExceptionResolver
 
-** @ExceptionHandler
+  > @ExceptionHandler
 
 * ResponseStatusExceptionResolver
 * DefaultHandlerExceptionResolver
@@ -355,7 +356,7 @@ public ResponseEntity<Object> void create(
 * setCustomArgumentResolver(WebArgumentResolver argumentResolver) - (2.5.2)
 * setCustomModelAndViewResolver(ModelAndViewResolver modelAndViewResolver) - (3.0.0)
 
-#### New @MVC Infrastructure ####
+#### ✔ New @MVC Infrastructure ####
 
 ![New @MVC Infrastructure](http://rstoyanchev.github.com/spring-mvc-31-update/file/infrastructure/support-classes.png)
 
@@ -372,9 +373,8 @@ public ResponseEntity<Object> void create(
 * HandlerMethodReturnValueHandler
 
 
-
 <br><br>
-### 참고자료
+## 참고자료
 
 * [Configuration Enhancements in Spring 3.1](http://cbeams.github.com/spring-3.1-config/#1)
 * [Spring MVC 3.1 Update](http://rstoyanchev.github.com/spring-mvc-31-update/#1)
