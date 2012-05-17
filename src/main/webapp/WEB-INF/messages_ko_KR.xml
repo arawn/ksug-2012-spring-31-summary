@@ -3,7 +3,7 @@
 <properties version="1.0">
     
     <entry key="NotBlank.movie.title">영화 제목을 입력하세요.</entry>
-    <entry key="NotBlank.movie.title">영화 제목을 입력하세요.</entry>
+    <entry key="NotBlank.movie.director">감독을 입력하세요.</entry>
     
     <entry key="movie.new.succeed">성공적으로 등록했습니다.</entry>
     <entry key="movie.edit.succeed">성공적으로 수정되었습니다.</entry>
