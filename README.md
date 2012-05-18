@@ -1,9 +1,9 @@
-[KSUG 세미나 2012 - Part 1] Spring 3.1에 대한 기능 소개와 @MVC 이야기
+[KSUG 세미나 2012 - Part 1] Spring 3.1에 대한 기능 요약과 @MVC 이야기
 ================================================================================================
 
-
+<br><br>
 Spring Framework 3.1: Key Themes
-------------------------------------------------------------------------------------------------
+================================================================================================
 
 * Environment profiles for bean definitions
 * Java-based application configuration
@@ -16,15 +16,16 @@ Spring Framework 3.1: Key Themes
 * Hibernate 4.0 & Quartz 2.0
 * Support for Java SE 7
 
-<br>
-### ◎ Environment profiles for bean definitions ###
 
-#### ✔ Environment Abstraction ####
+◎ Environment profiles for bean definitions
+------------------------------------------------------------------------------------------------
+
+### ✔ Environment Abstraction ###
 
 * org.springframework.core.env.PropertyResolver
 * org.springframework.core.env.Environment
 
-#### ✔ Environment Profiles && Configuration ####
+### ✔ Environment Profiles && Configuration ###
 
 * XML 'profile' attribute on <beans> element
 
@@ -58,8 +59,8 @@ public class AppConfig {
   > Web.xml : context-param, init-param
 
 
-<br>
-### ◎ Java-based application configuration ###
+◎ Java-based application configuration
+------------------------------------------------------------------------------------------------
 
 * @Configuration
 * @ComponentScan
@@ -74,8 +75,8 @@ public class AppConfig {
 * @ActiveProfiles("dev")
 
 
-<br>
-### ◎ 'c:' namespace ###
+◎ 'c:' namespace
+------------------------------------------------------------------------------------------------
 
 ```xml
 <bean class="…" c:age="10" c:name="myName"/>
@@ -83,8 +84,9 @@ public class AppConfig {
 <bean class="…" c:name-ref="nameBean" c:spouse-ref="spouseBean"/>
 ```
 
-<br>
-### ◎ Cache abstraction & declarative caching ###
+
+◎ Cache abstraction & declarative caching
+------------------------------------------------------------------------------------------------
 
 * Declarative Caching
 
@@ -108,39 +110,43 @@ public void deleteOwner(int id);
 
   > GemFireCacheManager
 
-<br>
-### ◎ Explicit support for Servlet 3.0 ###
+
+◎ Explicit support for Servlet 3.0
+------------------------------------------------------------------------------------------------
 
 * support for XML-free web application setup (no web.xml)
 * support for asynchronous request processing
 * standard Servlet 3.0 file upload support behind Spring's MultipartResolver abstraction
 
-<br>
-### ◎ @MVC processing & flash attributes ###
+
+◎ @MVC processing & flash attributes
+------------------------------------------------------------------------------------------------
 
 * New @MVC Infrastructure
 * FlashMap support and FlashMapManager abstraction
 
-<br>
-### ◎ Refined JPA support ###
+
+◎ Refined JPA support
+------------------------------------------------------------------------------------------------
 
 * Package scanning without persistence.xml
 * Consistent JPA setup by persistence unit name
 
-<br>
-### ◎ Hibernate 4.0 & Quartz 2.0 ###
 
-<br>
-### ◎ Support for Java SE 7 ###
+◎ Hibernate 4.0 & Quartz 2.0
+------------------------------------------------------------------------------------------------
+
+◎ Support for Java SE 7
+------------------------------------------------------------------------------------------------
 
 * making best use of JRE 7 at runtime
 * support for JDBC 4.1
 * support for fork-join framework
 
 
-<br><br>
+<br>
 Spring @MVC 3.1: Key Themes
-------------------------------------------------------------------------------------------------
+================================================================================================
 
 * **Java Config**
 * Consumes/Produces
@@ -151,10 +157,11 @@ Spring @MVC 3.1: Key Themes
 * HDIV Integration
 * **New @MVC Infrastructure**
 
-<br>
-### ◎ Java Config ###
 
-#### ✔ support for XML-free web application setup (no web.xml) ####
+◎ Java Config
+------------------------------------------------------------------------------------------------
+
+### ✔ support for XML-free web application setup (no web.xml) ###
 
 ```java
 public class MyWebAppInitializer implements WebApplicationInitializer {
@@ -173,7 +180,7 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
 }
 ```
 
-#### ✔ Simple Starting Point for WebApplicationContext ####
+### ✔ Simple Starting Point for WebApplicationContext ###
 
 ```java
 // Equivalent to <mvc:annotation:driven/>
@@ -185,7 +192,7 @@ public class WebConfig {
 }
 ```
 
-#### ✔ Built-in Customizations ####
+### ✔ Built-in Customizations ###
 
 ```java
 @EnableWebMvc
@@ -208,10 +215,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 }
 ```
 
-<br>
-### ◎ Consumes/Produces ###
 
-#### ✔ Input Media Type ####
+◎ Consumes/Produces
+------------------------------------------------------------------------------------------------
+
+### ✔ Input Media Type ###
 
 ```java
 @ResponseBody
@@ -231,7 +239,7 @@ public String save(@RequestBody JavaBean javaBean) {
 }
 ```
 
-#### ✔ Output Media Type ####
+### ✔ Output Media Type ###
 
 ```java
 @ResponseBody
@@ -252,10 +260,10 @@ public JavaBean get() {
 ```
 
 
-<br>
-### ◎ URI Variables ###
+◎ URI Variables
+------------------------------------------------------------------------------------------------
 
-#### ✔ Data Binding & URI Variables ####
+### ✔ Data Binding & URI Variables ###
 
 ```java
 @RequestMapping(value="/people/{firstName}/{lastName}/SSN")
@@ -265,7 +273,7 @@ public void search(Person person) {
 }
 ```
 
-#### ✔ Rendering & Path Variables ####
+### ✔ Rendering & Path Variables ###
 
 ```java
 @RequestMapping("/apps/edit/{slug}")
@@ -274,7 +282,7 @@ public String editForm(@PathVariable String slug){
 }
 ```
 
-#### ✔ "redirect:" & URI Vars ####
+### ✔ "redirect:" & URI Vars ###
 
 ```java
 @RequestMapping(
@@ -289,7 +297,7 @@ public String createRoom() {
 }
 ```
 
-#### ✔ Model Attributes & URI Vars ####
+### ✔ Model Attributes & URI Vars ###
 
 ```java
 @RequestMapping(
@@ -304,10 +312,10 @@ public String update(@ModelAttribute Account account) {
 ```
 
 
-<br>
-### ◎ Redirect & Flash Attributes ###
+◎ Redirect & Flash Attributes
+------------------------------------------------------------------------------------------------
 
-#### ✔ RedirectAttributes ####
+### ✔ RedirectAttributes ###
 
 ```java
 // "redirect:/account/" + account.getId()
@@ -322,7 +330,7 @@ public String save(Account account, RedirectAttributes redirectAttrs){
 }
 ```
 
-#### ✔ Flash Attributes ####
+### ✔ Flash Attributes ###
 
 ```java
 @RequestMapping(method=POST)
@@ -339,10 +347,10 @@ alert('${message}');
 ```
 
 
-<br>
-### ◎ Multipart Request Support ###
+◎ Multipart Request Support
+------------------------------------------------------------------------------------------------
 
-#### ✔ org.springframework.web.multipart.MultipartFile ####
+### ✔ org.springframework.web.multipart.MultipartFile ###
 
 ```java
 @RequestMapping(method = RequestMethod.POST)
@@ -355,7 +363,7 @@ public void create(@RequestParam("file") MultipartFile file){
 }
 ```
 
-#### ✔ javax.servlet.http.Part ####
+### ✔ javax.servlet.http.Part ###
 
 ```java
 @RequestMapping(method = RequestMethod.POST)
@@ -368,7 +376,7 @@ public void create(@RequestParam("file") Part part){
 }
 ```
 
-#### ✔ @RequestPart ####
+### ✔ @RequestPart ###
 
 ```java
 @RequestMapping(
@@ -383,8 +391,9 @@ public ResponseEntity<Object> void create(
 } 
 ```
 
-<br>
-### ◎ UriComponents / UriComponentsBuilder ###
+
+◎ UriComponents / UriComponentsBuilder
+------------------------------------------------------------------------------------------------
 
 ```java
 // /book/search?title=Noje.js
@@ -396,31 +405,26 @@ UriComponentsBuilder.fromPath("/{product}/search")
                     .encode().toUriString();
 ```
 
-<br>
-### ◎ HDIV Integration ###
 
-* Java Web security framework
+◎ [HDIV](http://hdiv.org/) Integration
+------------------------------------------------------------------------------------------------
+
+* In order to solve web application vulnerabilities we have created HDIV (HTTP Data Integrity Validator) open source project.
+* Java Web Application Security Framework
 * [interface RequestDataValueProcessor](http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/web/servlet/support/RequestDataValueProcessor.html)
-* [http://hdiv.org/](http://hdiv.org/)
 
-<br>
-### ◎ New @MVC Infrastructure ###
 
-#### ✔ DispatcherServlet과 Spring 3.0.x MVC 아키텍쳐 ####
+◎ New @MVC Infrastructure
+------------------------------------------------------------------------------------------------
+
+### ✔ DispatcherServlet과 Spring 3.0.x MVC 아키텍쳐 ###
 
 ![MVC 아키텍쳐](http://cfile25.uf.tistory.com/original/165D39114A6E757A228087)
 
 (그림 출처: http://chanwook.tistory.com/784)
 
 
-**➤ HandlerAdapter**
-
-* SimpleControllerHandlerAdapter (1.0)
-* SimpleServletHandlerAdapter (1.1.5)
-* HttpRequestHandlerAdapter (2.0)
-* AnnotationMethodHandlerAdapter (2.5)
-
-**➤ HandlerMapping**
+#### ➤ HandlerMapping 구현체 목록 ####
 
 * BeanNameUrlHandlerMapping (1.0)
 * SimpleUrlHandlerMapping (1.0)
@@ -428,7 +432,14 @@ UriComponentsBuilder.fromPath("/{product}/search")
 * DefaultAnnotationHandlerMapping (2.5)
 * ControllerBeanNameHandlerMapping (2.5.3)
 
-**➤ HandlerExceptionResolver**
+#### ➤ HandlerAdapter 구현체 목록 ####
+
+* SimpleControllerHandlerAdapter (1.0)
+* SimpleServletHandlerAdapter (1.1.5)
+* HttpRequestHandlerAdapter (2.0)
+* AnnotationMethodHandlerAdapter (2.5)
+
+#### ➤ HandlerExceptionResolver 구현체 목록 ####
 
 * AnnotationMethodHandlerExceptionResolver
 
@@ -438,19 +449,21 @@ UriComponentsBuilder.fromPath("/{product}/search")
 * DefaultHandlerExceptionResolver
 * SimpleMappingExceptionResolver
 
-#### ✔ New @MVC Infrastructure ####
+
+### ✔ New @MVC Infrastructure ###
 
 ![New @MVC Infrastructure](http://rstoyanchev.github.com/spring-mvc-31-update/file/infrastructure/support-classes.png)
 
 (그립 출처 : http://rstoyanchev.github.com/spring-mvc-31-update/#25)
 
-**➤ New @MVC Class **
+
+#### ➤ New @MVC Class ####
 
 * HandlerMapping : RequestMappingHandlerMapping
 * HandlerAdapter : RequestMappingHandlerAdapter
 * HandlerExceptionResolver : ExceptionHandlerExceptionResolver
 
-**➤ New Abstractions**
+#### ➤ New Abstractions ####
 
 * HandlerMethod
 * HandlerMethodArgumentResolver
@@ -458,7 +471,8 @@ UriComponentsBuilder.fromPath("/{product}/search")
 
 
 <br><br>
-## 참고자료
+참고자료
+------------------------------------------------------------------------------------------------
 
 * [Spring 3.1 and Beyond – Themes and Trends](http://whiteship.me/wp-content/uploads/2011/11/spring_3_1.pdf)
 * [Configuration Enhancements in Spring 3.1](http://cbeams.github.com/spring-3.1-config/#1)
