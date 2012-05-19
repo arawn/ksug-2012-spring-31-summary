@@ -90,6 +90,9 @@ public class AppConfig {
 
 * Declarative Caching
 
+```xml
+<cache:annotation-driven>
+```
 ```java
 @Cacheable
 public Owner loadOwner(int id);
@@ -99,9 +102,6 @@ public Owner loadOwner(String name);
 
 @CacheEvict
 public void deleteOwner(int id);
-```
-```xml
-<cache:annotation-driven>
 ```
 
 * Backend adapters for EhCache, GemFire, Coherence, etc
